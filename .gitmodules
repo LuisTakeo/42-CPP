@@ -1,0 +1,6 @@
+[submodule "CPP00"]
+	path = CPP00
+	url = https://github.com/LuisTakeo/42-CPP00.git
+[submodule "cpp00"]
+	path = cpp00
+	url = https://github.com/LuisTakeo/42-CPP00.git
