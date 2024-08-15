@@ -28,12 +28,14 @@ int	main(int argc, char **argv)
 	std::string		search = argv[2];
 	std::string		replace = argv[3];
 
+	// opening a readable file
 	std::ifstream 	infile(argv[1]);
     if (!infile)
 	{
         std::cerr << "Error on opening file " << argv[1] << std::endl;
         return 1;
     }
+	// opening a writeable file
 	std::ofstream	outfile(outfileName.c_str());
 	if (!outfile)
 	{
@@ -44,6 +46,7 @@ int	main(int argc, char **argv)
 	{
 		size_t	find_pos = 0;
 		size_t	actual_pos = 0;
+		// replace
 		while ((find_pos = line.find(search, actual_pos)) != std::string::npos)
 		{
 			outfile << line.substr(actual_pos, find_pos - actual_pos) << replace;
@@ -51,7 +54,6 @@ int	main(int argc, char **argv)
 		}
 		outfile << line.substr(actual_pos) << std::endl;
     }
-
     infile.close();
 	outfile.close();
 	return (0);
