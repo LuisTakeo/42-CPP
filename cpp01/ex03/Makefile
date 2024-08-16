@@ -2,7 +2,7 @@ NAME = weapon
 COMPILER := c++
 FLAGS :=	-Wall -Werror -Wextra -std=c++98
 
-SOURCE_FOLDER :=
+SOURCE_FOLDER := src/
 MAIN := main.cpp
 SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) Weapon.cpp HumanA.cpp HumanB.cpp)
 
