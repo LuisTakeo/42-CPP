@@ -28,9 +28,14 @@ int	main(int argc, char **argv)
 	std::string		search = argv[2];
 	std::string		replace = argv[3];
 
+	if (search.empty())
+	{
+		std::cerr << "Error! Search word is empty." << std::endl;
+		return (1);
+	}
 	// opening a readable file
-	std::ifstream 	infile(argv[1]);
-    if (!infile)
+	std::ifstream 	readFile(argv[1]);
+    if (!readFile)
 	{
         std::cerr << "Error on opening file " << argv[1] << std::endl;
         return 1;
@@ -39,22 +44,25 @@ int	main(int argc, char **argv)
 	std::ofstream	outfile(outfileName.c_str());
 	if (!outfile)
 	{
-		std::cerr << "Error on opening file " << outfileName << std::endl, infile.close();
+		std::cerr << "Error on opening file " << outfileName << std::endl, readFile.close();
 		return 1;
 	}
-    while (std::getline(infile, line))
+    while (std::getline(readFile, line))
 	{
 		size_t	find_pos = 0;
 		size_t	actual_pos = 0;
 		// replace
-		while ((find_pos = line.find(search, actual_pos)) != std::string::npos)
+		while (1)
 		{
+			find_pos = line.find(search, actual_pos);
+			if (find_pos == std::string::npos)
+				break;
 			outfile << line.substr(actual_pos, find_pos - actual_pos) << replace;
 			actual_pos = find_pos + search.size();
 		}
 		outfile << line.substr(actual_pos) << std::endl;
     }
-    infile.close();
+    readFile.close();
 	outfile.close();
 	return (0);
 }
