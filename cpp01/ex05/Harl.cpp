@@ -24,10 +24,7 @@ Harl::Harl(/* args */)
 	this->_callFunc[3] = &Harl::error;
 }
 
-Harl::~Harl()
-{
-
-}
+Harl::~Harl() { }
 
 void	Harl::complain(std::string level)
 {
