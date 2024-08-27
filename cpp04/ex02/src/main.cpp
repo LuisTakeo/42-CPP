@@ -5,6 +5,7 @@
 int main()
 {
     {
+        std::cout << "Tests pdf: " << std::endl;
         const AAnimal* j = new Dog();
         const AAnimal* i = new Cat();
         std::cout << j->getType() << " " << std::endl;
@@ -13,21 +14,12 @@ int main()
         j->makeSound(); //dog sound
         delete j;
         delete i;
+
+        // AAnimal animal;
     }
-    // {
-    //     std::cout << "----------------------" << std::endl;
-    //     std::cout << "Test basic" << std::endl;
-    //     Dog basic;
-    //     {
-    //         Dog temp = basic;
-    //         Dog anotherDog(temp);
-    //     }
-    //     basic.makeSound();
-    //     std::cout << "----------------------" << std::endl;
-    //     std::cout << "Test virtual destructor" << std::endl;
-        Cat *a = new Cat();
-        AAnimal *b = a;
-        delete b;
-    // }
+
+    Cat *a = new Cat();
+    AAnimal *b = a;
+    delete b;
     return 0;
 }

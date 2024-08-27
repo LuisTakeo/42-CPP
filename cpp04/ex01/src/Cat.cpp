@@ -38,4 +38,4 @@ Cat	&   Cat::operator=(Cat const &obj)
 	return (*this);
 }
 
-void	Cat::makeSound(void) const { std::cout << this->_brain->getIdea(0) << std::endl; }
+void	Cat::makeSound(void) const { std::cout << (this->_brain ? this->_brain->getIdea(0) : "Meow") << std::endl; }

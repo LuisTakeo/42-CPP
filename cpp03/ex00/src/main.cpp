@@ -2,6 +2,8 @@
 
 int main()
 {
+    std::cout << "Tests constructors clap trap" << std::endl;
+    std::cout << "----------------------" << std::endl;
     ClapTrap clap;
     ClapTrap trap (clap);
     ClapTrap other("AnteDEGUEMON");

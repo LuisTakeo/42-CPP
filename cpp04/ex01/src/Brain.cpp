@@ -46,6 +46,7 @@ std::string Brain::getIdea(int i) const
 {
 	if (i < 0 || i >= 100)
 	{
+		std::cout << "out of range" << std::endl;
 		return ("");
 	}
 	return (this->_ideas[i]);

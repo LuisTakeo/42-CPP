@@ -7,7 +7,7 @@
 class WrongCat : public WrongAnimal
 {
 protected:
-	std::string		_type;
+
 public:
     WrongCat();
     WrongCat(std::string type);
@@ -16,7 +16,7 @@ public:
 
 	WrongCat			&	operator=(WrongCat const &obj);
 
-	virtual void	makeSound() const;
+	void	makeSound() const;
 };
 
 #endif

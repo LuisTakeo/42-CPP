@@ -37,4 +37,4 @@ Dog	&Dog::operator=(Dog const &obj)
 	return (*this);
 }
 
-void	Dog::makeSound(void) const { std::cout << this->_brain->getIdea(0) << std::endl; }
+void	Dog::makeSound(void) const { std::cout << (this->_brain ? this->_brain->getIdea(0) : "Arf arf AU")  << std::endl; }

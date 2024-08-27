@@ -5,21 +5,9 @@
 int main()
 {
     {
-        const Animal* meta = new Animal();
         const Animal* j = new Dog();
         const Animal* i = new Cat();
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
-        i->makeSound(); //will output the cat sound!
-        j->makeSound(); //dog sound
-        meta->makeSound(); // generic sound
-
-        const Animal *copy = meta;
-
-        copy->makeSound();
-
-        delete meta;
-        delete j;
+        delete j;//should not create a leak
         delete i;
     }
     {
@@ -49,6 +37,7 @@ int main()
             Dog temp = basic;
             Dog anotherDog(temp);
         }
+        std::cout << "Basic making a sound" << std::endl;
         basic.makeSound();
         std::cout << "----------------------" << std::endl;
         std::cout << "Test virtual destructor" << std::endl;

@@ -25,37 +25,16 @@ int main()
     {
         // const WrongAnimal* meta = new Animal(); // << error on compilation
         // const Cat cat = new Dog(); // << error on compilation
-        const WrongAnimal* j = new WrongAnimal();
+        // const WrongAnimal* j = new WrongAnimal();
         const WrongAnimal* i = new WrongCat();
+        const WrongAnimal *j = i;
 
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
-        i->makeSound(); //will output the cat sound!
-        j->makeSound(); //dog sound
+        // std::cout << j->getType() << " " << std::endl;
+        std::cout << i->getType() << " WRONG CAT " << std::endl;
+        i->makeSound(); //will output the generic sound!
+        j->makeSound(); //
+        // delete j;
         delete j;
-        delete i;
-    }
-
-    {
-        Animal* meta = new Animal();
-        Animal* j = new Dog();
-        Cat* i = new Cat();
-        std::cout << j->getType() << " " << std::endl;
-        std::cout << i->getType() << " " << std::endl;
-        i->makeSound(); //will output the cat sound!
-        j->makeSound(); //dog sound
-        meta->makeSound(); // generic sound
-
-        Animal *newAnimal = new Animal(*j);
-        Cat     cat = *i;
-
-        cat.makeSound();
-        newAnimal->makeSound();
-
-        delete meta;
-        delete j;
-        delete i;
-        delete newAnimal;
     }
     return 0;
 }

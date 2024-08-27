@@ -10,7 +10,7 @@ class Dog : public AAnimal
 private:
 	Brain			*_brain;
 protected:
-	std::string		_type;
+
 public:
     Dog();
     Dog(std::string type);
