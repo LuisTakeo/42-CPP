@@ -4,6 +4,10 @@
 # include <iostream>
 # include <exception>
 
+# define ERROR_COLOR	"\033[1;31m"
+# define TITLE_COLOR	"\033[1;34m"
+# define RESET_COLOR	"\033[0m"
+
 class	Bureaucrat
 {
 	private:
