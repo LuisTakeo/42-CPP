@@ -28,8 +28,8 @@ void	testCreatingFormsValid()
 		std::cout << bureaucrat1 << std::endl;
 		Bureaucrat	bureaucrat2("bureaucrat2", 150);
 		std::cout << bureaucrat2 << std::endl;
-		form1.beSigned(bureaucrat1);
-		form2.beSigned(bureaucrat2);
+		bureaucrat1.signForm(form1);
+		bureaucrat2.signForm(form2);
 
 		std::cout << SUBTITLE_COLOR << "Showing forms signed " << RESET_COLOR << std::endl;
 		std::cout << form1;
@@ -107,23 +107,7 @@ void	testTooLowSignedNote()
 		std::cout << bureaucrat1 << std::endl;
 
 		std::cout << SUBTITLE_COLOR << "Trying to sign form" << RESET_COLOR << std::endl;
-		form1.beSigned(bureaucrat1);
-	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		printError(e.what());
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		printError(e.what());
-	}
-	catch (Form::GradeTooHighException &e)
-	{
-		printError(e.what());
-	}
-	catch (Form::GradeTooLowException &e)
-	{
-		printError(e.what());
+		bureaucrat1.signForm(form1);
 	}
 	catch (std::exception &e)
 	{
@@ -144,25 +128,9 @@ void	testTooLowSignedNoteValue150()
 		std::cout << bureaucrat1 << std::endl;
 
 		std::cout << SUBTITLE_COLOR << "Trying to sign form" << RESET_COLOR << std::endl;
-		form1.beSigned(bureaucrat1);
+		bureaucrat1.signForm(form1);
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		printError(e.what());
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		printError(e.what());
-	}
-	catch (Form::GradeTooHighException &e)
-	{
-		printError(e.what());
-	}
-	catch (Form::GradeTooLowException &e)
-	{
-		printError(e.what());
-	}
-	catch (std::exception &e)
+	catch (Bureaucrat::CouldNotSignFormException &e)
 	{
 		printError(e.what());
 	}
@@ -207,6 +175,28 @@ void	testTooLowGradeValueOneThousand()
 	}
 }
 
+void	testInvalidFormAlreadySigned()
+{
+	std::cout << TITLE_COLOR << "Trying to sign already signed form" << RESET_COLOR << std::endl;
+	try
+	{
+		std::cout << SUBTITLE_COLOR << "Declaring forms" << RESET_COLOR << std::endl;
+		Form	form1("form1", 5, 5);
+		Bureaucrat	bureaucrat1("bureaucrat1", 5);
+
+		std::cout << form1;
+		std::cout << bureaucrat1 << std::endl;
+
+		std::cout << SUBTITLE_COLOR << "Trying to sign form" << RESET_COLOR << std::endl;
+		bureaucrat1.signForm(form1);
+		bureaucrat1.signForm(form1);
+	}
+	catch (Bureaucrat::CouldNotSignFormException &e)
+	{
+		printError(e.what());
+	}
+}
+
 void	testInvalidFormTooLowGrade()
 {
 	std::cout << TITLE_COLOR << "Creating forms with too low grade" << RESET_COLOR << std::endl;
@@ -227,6 +217,7 @@ void	testCreatingFormsInvalid()
 {
 	testInvalidFormTooHighGrade();
 	testInvalidFormTooLowGrade();
+	testInvalidFormAlreadySigned();
 	std::cout << SUCCESS_COLOR << "Finished" << RESET_COLOR << std::endl;
 }
 

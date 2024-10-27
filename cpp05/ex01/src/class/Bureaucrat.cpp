@@ -54,6 +54,24 @@ void	Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		if (form.getSigned())
+			throw Bureaucrat::CouldNotSignFormException("already signed");
+		form.beSigned(*this);
+	}
+	catch (std::exception &e)
+	{
+		std::string error = "Bureaucrat " + this->_name + " cannot sign form "
+			+ form.getName() + " because " + e.what();
+		std::cerr << ERROR_COLOR << error.c_str() << RESET_COLOR << std::endl;
+	}
+
+
+}
+
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high");
@@ -62,6 +80,21 @@ const char	*Bureaucrat::GradeTooHighException::what() const throw()
 const char	*Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low");
+}
+
+const char *	Bureaucrat::CouldNotSignFormException::getReason() const
+{
+	return (this->_reason.c_str());
+}
+
+Bureaucrat::CouldNotSignFormException::
+	CouldNotSignFormException(const std::string &reason): _reason(reason)
+{}
+
+const char	*Bureaucrat::CouldNotSignFormException::what() const throw()
+{
+
+	return (this->_reason.c_str());
 }
 
 std::ostream	&operator<<(std::ostream &outstream, Bureaucrat const &obj)
