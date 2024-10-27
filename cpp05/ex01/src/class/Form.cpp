@@ -1,5 +1,10 @@
 #include "Form.hpp"
 
+# define ERROR_COLOR		"\033[1;31m"
+# define TITLE_FORM_COLOR	"\033[1;35m"
+# define SUCCESS_COLOR		"\033[1;32m"
+# define RESET_COLOR		"\033[0m"
+
 Form::Form(): _name("default"), _gradeToSign(150), _gradeToExecute(150)
 {
 	this->_signed = false;
@@ -65,17 +70,17 @@ void				Form::beSigned(Bureaucrat const &bureaucrat)
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return "Grade is too high";
+	return "Grade is too high in Form";
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return "Grade is too low";
+	return "Grade is too low in Form";
 }
 
 std::ostream &operator<<(std::ostream &outstream, Form const &form)
 {
-	outstream << "Form: " << form.getName() << std::endl
+	outstream << TITLE_FORM_COLOR << "Form: " << form.getName() << RESET_COLOR << std::endl
 		<< "Signed: " << (form.getSigned() ? "True" : "False") << std::endl
 		<< "Grade to sign: " << form.getGradeToSign()  << std::endl
 		<< "Grade to execute: " << form.getGradeToExecute() << std::endl;

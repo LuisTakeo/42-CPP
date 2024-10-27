@@ -12,7 +12,7 @@ SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) $(CLASSES) $(FUNCTIONS))
 OBJECTS_FOLDER = bin/
 OBJECTS = $(SOURCE:$(SOURCE_FOLDER)%.cpp=$(OBJECTS_FOLDER)%.o)
 
-$(OBJECTS_FOLDER)%.o:$(SOURCE_FOLDER)%.cpp
+$(OBJECTS_FOLDER)%.o:$(SOURCE_FOLDER)%.cpp $(SOURCE_FOLDER)%.hpp
 	@mkdir -p $(OBJECTS_FOLDER)
 	@mkdir -p $(OBJECTS_FOLDER)$(CLASS_FOLDER)
 	@$(COMPILER) $(FLAGS) -o $@ -c $< && echo "Compilando: $(notdir $<)"
