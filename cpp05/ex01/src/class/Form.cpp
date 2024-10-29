@@ -65,6 +65,8 @@ void				Form::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() > this->_gradeToSign)
 		throw Form::GradeTooLowException();
+	if (this->_signed)
+		throw Form::FormAlreadySigned();
 	this->_signed = true;
 	std::cout << "Bureaucrat " << bureaucrat.getName()
 		<< " signed form " << this->_name << std::endl;
@@ -78,6 +80,11 @@ const char *Form::GradeTooHighException::what() const throw()
 const char *Form::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low in Form";
+}
+
+const char *Form::FormAlreadySigned::what() const throw()
+{
+	return "Form is already signed";
 }
 
 std::ostream &operator<<(std::ostream &outstream, Form const &form)

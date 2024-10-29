@@ -130,7 +130,7 @@ void	testTooLowSignedNoteValue150()
 		std::cout << SUBTITLE_COLOR << "Trying to sign form" << RESET_COLOR << std::endl;
 		bureaucrat1.signForm(form1);
 	}
-	catch (Bureaucrat::CouldNotSignFormException &e)
+	catch (Form::GradeTooLowException &e)
 	{
 		printError(e.what());
 	}
@@ -191,7 +191,7 @@ void	testInvalidFormAlreadySigned()
 		bureaucrat1.signForm(form1);
 		bureaucrat1.signForm(form1);
 	}
-	catch (Bureaucrat::CouldNotSignFormException &e)
+	catch (Form::FormAlreadySigned &e)
 	{
 		printError(e.what());
 	}

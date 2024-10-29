@@ -54,22 +54,18 @@ void	Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(Form &form)
+	throw()
 {
-	try
+    try {
+        form.beSigned(*this);
+        std::cout << this->getName() << " signed " << form.getName() << std::endl;
+    }
+	catch (const std::exception &e)
 	{
-		if (form.getSigned())
-			throw Bureaucrat::CouldNotSignFormException("already signed");
-		form.beSigned(*this);
-	}
-	catch (std::exception &e)
-	{
-		std::string error = "Bureaucrat " + this->_name + " cannot sign form "
-			+ form.getName() + " because " + e.what();
-		std::cerr << ERROR_COLOR << error.c_str() << RESET_COLOR << std::endl;
-	}
-
-
+        std::cerr << ERROR_COLOR << "Bureaucrat " << this->_name << " cannot sign form "
+                  << form.getName() << " because " << e.what() << RESET_COLOR << std::endl;
+    }
 }
 
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
