@@ -164,7 +164,6 @@ void	test_decrement_grade_invalid()
 		std::cout << "Decrementing grade" << std::endl;
 		burocrat.decrementGrade();
 		std::cout << burocrat << std::endl;
-		std::cout << SUCCESS_COLOR << "Success!!!" << RESET_COLOR << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException &e)
 	{
@@ -183,18 +182,34 @@ void	test_decrement_grade_invalid()
 void	test_bureaucrats()
 {
 	std::cout << TITLE_COLOR << "Testing Bureaucrats" << RESET_COLOR << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	test_if_grade_is_too_high();
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	std::cout << "================" << std::endl;
 	test_if_grade_is_negative();
 	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	test_if_grade_is_too_low();
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	std::cout << "================" << std::endl;
 	test_grade_valid();
 	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	test_increment_grade_invalid();
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
 	std::cout << "================" << std::endl;
 	test_decrement_grade_invalid();
 	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << "================" << std::endl;
+	std::cout << SUCCESS_COLOR << "Success!!!" << RESET_COLOR << std::endl;
 }
 
 int	main()

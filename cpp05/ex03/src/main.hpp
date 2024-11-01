@@ -14,6 +14,7 @@
 # include "./class/RobotomyRequestForm.hpp"
 # include "./class/PresidentialPardonForm.hpp"
 # include "./class/Bureaucrat.hpp"
+# include "./class/Intern.hpp"
 
 
 

@@ -1,11 +1,11 @@
-NAME = aforms
+NAME = intern
 COMPILER := c++
 FLAGS :=	-Wall -Werror -Wextra -std=c++98
 
 SOURCE_FOLDER := src/
 MAIN := main.cpp
 CLASS_FOLDER := class/
-CLASSES := $(addprefix $(CLASS_FOLDER), Bureaucrat.cpp AForm.cpp ) \
+CLASSES := $(addprefix $(CLASS_FOLDER), Bureaucrat.cpp AForm.cpp Intern.cpp) \
 			$(addprefix $(CLASS_FOLDER), ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp)
 FUNCTIONS :=
 SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) $(CLASSES) $(FUNCTIONS))

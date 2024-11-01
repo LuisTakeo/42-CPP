@@ -36,7 +36,7 @@ class ShrubberyCreationForm: public AForm
 		* @brief Destructor
 		*/
 		virtual ~ShrubberyCreationForm();
-
+		// IT SHOULD BE VIRTUAL
 		// OPERATORS
 		/*
 		* @brief Assignation operator= for ShrubberyCreationForm
