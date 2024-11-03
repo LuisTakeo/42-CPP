@@ -37,7 +37,6 @@ class AForm
 		bool				getSigned() const;
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
-		std::string const 	getNameJogador() const;
 		std::string const 	getTarget() const;
 
 		void				beSigned(Bureaucrat const &bureaucrat);

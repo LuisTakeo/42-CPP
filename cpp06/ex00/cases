@@ -1,0 +1,9 @@
+cases to treat the conversion:
+// casos que a conversão atoi e atof strof tratam
+0
+1
+10
+100
+1000
+INT_MAX
+-1

@@ -18,6 +18,7 @@ public:
 	std::string		getType(void) const;
     void            setType(std::string type);
 
+	// Pure virtual function
 	virtual void	makeSound() const = 0;
 };
 
