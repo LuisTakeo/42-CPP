@@ -21,6 +21,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 
 std::string ScalarConverter::getType(const std::string &str)
 {
+	if (isPseudoLiteral(str))
+		return ("pseudo literal");
 	if (isChar(str))
 		return ("char");
 	if (isInt(str))
@@ -29,8 +31,6 @@ std::string ScalarConverter::getType(const std::string &str)
 		return ("float");
 	if (isDouble(str))
 		return ("double");
-	if (isPseudoLiteral(str))
-		return ("pseudo literal");
 	return ("invalid");
 }
 
@@ -62,7 +62,7 @@ bool ScalarConverter::isFloat(const std::string &str)
 	float		n;
 
 	n = std::strtof(str.c_str(), &endptr);
-	if (*endptr != '\0')
+	if (*endptr != 'f' || *(endptr + 1) != '\0')
 		return (false);
 	if (n == std::numeric_limits<float>::infinity() || n == -std::numeric_limits<float>::infinity()
 		|| !str.compare("nanf"))
