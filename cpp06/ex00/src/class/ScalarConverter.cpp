@@ -107,7 +107,7 @@ void ScalarConverter::convert(const std::string &str)
 		std::cerr << "Invalid input" << std::endl;
 		return ;
 	}
-	(void)type;
+	ScalarConverter::toChar(str, type);
 }
 
 // TODO: Implement this method
@@ -122,11 +122,28 @@ void ScalarConverter::convert(const std::string &str)
 // If the input is a literal double and its not representable as a char, this method should print "char: impossible"
 void ScalarConverter::toChar(const std::string &str, const std::string &type)
 {
-	(void)str;
-	(void)type;
+	char c = -1;
+
 	std::cout << "char: ";
-
-
+	if (type == "char" || type == "int" || type == "float")
+	{
+		if (type == "char")
+			c = static_cast<char>(str[0]);
+		else
+		{
+			char	*endptr;
+			double	n = std::strtod(str.c_str(), &endptr);
+			if (n < 0 || n > 255 || n == std::numeric_limits<double>::quiet_NaN())
+			{	std::cout << "impossible" << std::endl; return ;	}
+			c = static_cast<char>(n);
+		}
+		if (std::isprint(c))
+			std::cout << "'" << c << "'";
+		else
+			std::cout << "Non displayable"; // CORRIGIR
+	}
+	else
+		std::cout << "impossible";
 	std::cout << std::endl;
 }
 
