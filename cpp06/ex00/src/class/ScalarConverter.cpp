@@ -108,6 +108,7 @@ void ScalarConverter::convert(const std::string &str)
 		return ;
 	}
 	ScalarConverter::toChar(str, type);
+	ScalarConverter::toInt(str, type);
 }
 
 // TODO: Implement this method
@@ -125,25 +126,26 @@ void ScalarConverter::toChar(const std::string &str, const std::string &type)
 	char c = -1;
 
 	std::cout << "char: ";
-	if (type == "char" || type == "int" || type == "float")
-	{
-		if (type == "char")
-			c = static_cast<char>(str[0]);
-		else
-		{
-			char	*endptr;
-			double	n = std::strtod(str.c_str(), &endptr);
-			if (n < 0 || n > 255 || n == std::numeric_limits<double>::quiet_NaN())
-			{	std::cout << "impossible" << std::endl; return ;	}
-			c = static_cast<char>(n);
-		}
-		if (std::isprint(c))
-			std::cout << "'" << c << "'";
-		else
-			std::cout << "Non displayable"; // CORRIGIR
-	}
+	if (type == "pseudo literal")
+	{	std::cout << "impossible" << std::endl; return ;	}
+	if (type == "char")
+		c = static_cast<char>(str[0]);
 	else
-		std::cout << "impossible";
+	{
+		char	*endptr;
+		double	n = std::strtod(str.c_str(), &endptr);
+		if (n < 0 || n > 255 || n == std::numeric_limits<double>::quiet_NaN())
+		{	std::cout << "impossible" << std::endl; return ;	}
+		c = static_cast<char>(n);
+	}
+	if (std::isprint(c))
+		std::cout << "'" << c << "'";
+	else
+		std::cout << "Non displayable"; // CORRIGIR
+	
+	// std::cout << type;
+	// else
+	// 	std::cout << "impossible";
 	std::cout << std::endl;
 }
 
@@ -153,11 +155,26 @@ void ScalarConverter::toChar(const std::string &str, const std::string &type)
 // else, this method should print "int: <int>"
 void ScalarConverter::toInt(const std::string &str, const std::string &type)
 {
+	int	num = 0;
+
 	(void)str;
 	(void)type;
 	std::cout << "Int: ";
-
-
+	if (type == "pseudo literal")
+	{	std::cout << "impossible" << std::endl; return ;	}
+	if (type == "char")
+		num = static_cast<int>(str[0]);
+	
+	long int value = std::strtol(str.c_str(), NULL, 10);
+	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
+	{	std::cout << "impossible" << std::endl; return ;	}
+	if (type == "int")
+		num = static_cast<int>(value);
+	if (type == "float")
+		num = static_cast<int>(std::strtof(str.c_str(), NULL));
+	if (type == "double")
+		num = static_cast<int>(std::strtod(str.c_str(), NULL));
+	std::cout << num;
 	std::cout << std::endl;
 }
 
@@ -171,6 +188,9 @@ void ScalarConverter::toInt(const std::string &str, const std::string &type)
 // If the input is a nanf, this method should print "float: nanf"
 void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 {
+	float num = 0.0f;
+
+	(void)num;
 	(void)str;
 	(void)type;
 	std::cout << "Float: ";
