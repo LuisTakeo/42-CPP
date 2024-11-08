@@ -1,6 +1,6 @@
-NAME = converter
+NAME = convert
 COMPILER := c++
-FLAGS :=	-Wall -Werror -Wextra -std=c++98
+FLAGS := -Wall -Werror -Wextra -std=c++98
 
 SOURCE_FOLDER := src/
 MAIN := main.cpp
