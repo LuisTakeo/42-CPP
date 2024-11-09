@@ -107,8 +107,11 @@ void ScalarConverter::convert(const std::string &str)
 		std::cerr << "Invalid input" << std::endl;
 		return ;
 	}
+	// std::cout << "type: " << type << std::endl; // debug - REMOVE
 	ScalarConverter::toChar(str, type);
 	ScalarConverter::toInt(str, type);
+	ScalarConverter::toFloat(str, type);
+	ScalarConverter::toDouble(str, type);
 }
 
 // TODO: Implement this method
@@ -134,18 +137,14 @@ void ScalarConverter::toChar(const std::string &str, const std::string &type)
 	{
 		char	*endptr;
 		double	n = std::strtod(str.c_str(), &endptr);
-		if (n < 0 || n > 255 || n == std::numeric_limits<double>::quiet_NaN())
+		if (n < 0 || n > 255)
 		{	std::cout << "impossible" << std::endl; return ;	}
 		c = static_cast<char>(n);
 	}
 	if (std::isprint(c))
 		std::cout << "'" << c << "'";
 	else
-		std::cout << "Non displayable"; // CORRIGIR
-	
-	// std::cout << type;
-	// else
-	// 	std::cout << "impossible";
+		std::cout << "Non displayable";
 	std::cout << std::endl;
 }
 
@@ -157,44 +156,48 @@ void ScalarConverter::toInt(const std::string &str, const std::string &type)
 {
 	int	num = 0;
 
-	(void)str;
-	(void)type;
 	std::cout << "Int: ";
 	if (type == "pseudo literal")
 	{	std::cout << "impossible" << std::endl; return ;	}
 	if (type == "char")
 		num = static_cast<int>(str[0]);
-	
+
 	long int value = std::strtol(str.c_str(), NULL, 10);
 	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
 	{	std::cout << "impossible" << std::endl; return ;	}
 	if (type == "int")
 		num = static_cast<int>(value);
 	if (type == "float")
-		num = static_cast<int>(std::strtof(str.c_str(), NULL));
+		num = static_cast<int>(value);
 	if (type == "double")
-		num = static_cast<int>(std::strtod(str.c_str(), NULL));
+		num = static_cast<int>(value);
 	std::cout << num;
 	std::cout << std::endl;
 }
 
 
-// TODO: Implement this method
-// This method should convert the input string to a float
-// If the input string is not a valid float, this method should print "impossible"
-// else, this method should print "float: <float>.0f"
-// If the input is a inff or +inff or -inff,
-// this method should print "float: inff" or "float: +inff" or "float: -inff"
-// If the input is a nanf, this method should print "float: nanf"
 void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 {
 	float num = 0.0f;
 
-	(void)num;
-	(void)str;
-	(void)type;
 	std::cout << "Float: ";
+	if (type == "pseudo literal")
+	{
+		if (str == "inf" || str == "+inf" || str == "-inf" || str == "nan")
+			std::cout << str << "f" << std::endl;
+		else
+			std::cout << str << std::endl;
+		return ;
+	}
+	if (type == "char")
+		num = static_cast<float>(str[0]);
 
+	double value = std::strtod(str.c_str(), NULL);
+	if (value > std::numeric_limits<float>::max())
+	{	std::cout << "impossible" << std::endl; return ;	}
+	else
+	{	num = std::strtof(str.c_str(), NULL);}
+	std::cout << std::fixed << std::setprecision(2) << value << "f";
 
 	std::cout << std::endl;
 }
@@ -208,10 +211,15 @@ void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 // If the input is a nan, this method should print "double: nan"
 void ScalarConverter::toDouble(const std::string &str, const std::string &type)
 {
-	(void)str;
-	(void)type;
+	double num = 0.0;
+
 	std::cout << "Double: ";
-
-
+	if (type == "pseudo literal")
+	{	std::cout << str << std::endl; return ;	}
+	if (type == "char")
+		num = static_cast<double>(str[0]);
+	else
+		num = std::strtod(str.c_str(), NULL);
+	std::cout << std::fixed << num;
 	std::cout << std::endl;
 }
