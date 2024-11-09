@@ -92,11 +92,7 @@ bool ScalarConverter::isPseudoLiteral(const std::string &str)
 	return (false);
 }
 
-// TODO: Implement this method
-// This method should call the appropriate conversion method based on the input string
-// The conversion methods should be static and private
-// The conversion methods should be named toChar, toInt, toFloat, and toDouble
-// The conversion methods should take a const std::string & as a parameter
+
 void ScalarConverter::convert(const std::string &str)
 {
 	std::string	type;
@@ -107,23 +103,12 @@ void ScalarConverter::convert(const std::string &str)
 		std::cerr << "Invalid input" << std::endl;
 		return ;
 	}
-	// std::cout << "type: " << type << std::endl; // debug - REMOVE
 	ScalarConverter::toChar(str, type);
 	ScalarConverter::toInt(str, type);
 	ScalarConverter::toFloat(str, type);
 	ScalarConverter::toDouble(str, type);
 }
 
-// TODO: Implement this method
-// This method should convert the input string to a char
-// If the input string is not a valid char, this method should print "impossible"
-// If the input is a literal char and its printable, this method should print "char: '<char>'"
-// If the input is a literal int or float and its printable, this method should print "char: '<char>'"
-// If the input is a literal int or float and its not printable,
-// this method should print "char: Non displayable"
-// If the input is a literal double and its not printable, this method should print "char: Non displayable"
-// If the input is a literal double and its printable, this method should print "char: '<char>'"
-// If the input is a literal double and its not representable as a char, this method should print "char: impossible"
 void ScalarConverter::toChar(const std::string &str, const std::string &type)
 {
 	char c = -1;
@@ -148,10 +133,7 @@ void ScalarConverter::toChar(const std::string &str, const std::string &type)
 	std::cout << std::endl;
 }
 
-// TODO: Implement this method
-// This method should convert the input string to an int
-// If the input string is not a valid int, this method should print "impossible"
-// else, this method should print "int: <int>"
+
 void ScalarConverter::toInt(const std::string &str, const std::string &type)
 {
 	int	num = 0;
@@ -175,6 +157,14 @@ void ScalarConverter::toInt(const std::string &str, const std::string &type)
 	std::cout << std::endl;
 }
 
+int ScalarConverter::countAfterPoint(const std::string &str)
+{
+	size_t	pos = str.find('.');
+
+	if (pos == std::string::npos)
+		return (1);
+	return (str.length() - pos - 1);
+}
 
 void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 {
@@ -197,18 +187,11 @@ void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 	{	std::cout << "impossible" << std::endl; return ;	}
 	else
 	{	num = std::strtof(str.c_str(), NULL);}
-	std::cout << std::fixed << std::setprecision(2) << value << "f";
+	std::cout << std::fixed << std::setprecision(countAfterPoint(str)) << value << "f";
 
 	std::cout << std::endl;
 }
 
-// TODO: Implement this method
-// This method should convert the input string to a double
-// If the input string is not a valid double, this method should print "impossible"
-// else, this method should print "double: <double>.0"
-// If the input is a inf or +inf or -inf,
-// this method should print "double: inf" or "double: +inf" or "double: -inf"
-// If the input is a nan, this method should print "double: nan"
 void ScalarConverter::toDouble(const std::string &str, const std::string &type)
 {
 	double num = 0.0;
@@ -220,6 +203,6 @@ void ScalarConverter::toDouble(const std::string &str, const std::string &type)
 		num = static_cast<double>(str[0]);
 	else
 		num = std::strtod(str.c_str(), NULL);
-	std::cout << std::fixed << num;
+	std::cout << std::fixed << std::setprecision(countAfterPoint(str)) << num;
 	std::cout << std::endl;
 }
