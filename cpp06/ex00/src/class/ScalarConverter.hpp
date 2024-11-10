@@ -6,6 +6,8 @@
 #include <string>
 #include <cstdlib>
 #include <limits>
+#include <stdexcept>
+
 
 class ScalarConverter
 {

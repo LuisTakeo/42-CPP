@@ -1,7 +1,7 @@
 {
   "files.associations": {
-    "*.embeddedhtml": "html",
     "*.scss": "css",
+    "*.embeddedhtml": "html",
     "atomic": "cpp",
     "bit": "cpp",
     "cctype": "cpp",
@@ -69,6 +69,7 @@
     "random": "cpp",
     "string_view": "cpp",
     "iomanip": "cpp",
-    "ranges": "cpp"
+    "ranges": "cpp",
+    "numbers": "cpp"
   }
 }

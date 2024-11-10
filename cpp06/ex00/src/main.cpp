@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 	}
 	(void)argv;
 	// testChar();
+	std::cout << std::numeric_limits<float>::max() << std::endl;
 	std::string str = argv[1];
 	ScalarConverter::convert(str);
 	return EXIT_SUCCESS;

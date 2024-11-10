@@ -168,7 +168,7 @@ int ScalarConverter::countAfterPoint(const std::string &str)
 
 void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 {
-	float num = 0.0f;
+	double value = 0.0f;
 
 	std::cout << "Float: ";
 	if (type == "pseudo literal")
@@ -180,13 +180,14 @@ void ScalarConverter::toFloat(const std::string &str, const std::string &type)
 		return ;
 	}
 	if (type == "char")
-		num = static_cast<float>(str[0]);
-
-	double value = std::strtod(str.c_str(), NULL);
-	if (value > std::numeric_limits<float>::max())
-	{	std::cout << "impossible" << std::endl; return ;	}
+		value = static_cast<float>(str[0]);
 	else
-	{	num = std::strtof(str.c_str(), NULL);}
+	{
+		value = std::strtod(str.c_str(), NULL);
+		if (value > std::numeric_limits<float>::max())
+		{	std::cout << "impossible" << std::endl; return ;	}
+		// static_cast should not work with INT_MIN or INT_MAX
+	}
 	std::cout << std::fixed << std::setprecision(countAfterPoint(str)) << value << "f";
 
 	std::cout << std::endl;
