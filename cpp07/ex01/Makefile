@@ -1,20 +1,19 @@
-NAME = bureaucrat
+NAME = iter
 COMPILER := c++
 FLAGS :=	-Wall -Werror -Wextra -std=c++98
 
-SOURCE_FOLDER := src/
+SOURCE_FOLDER :=
 MAIN := main.cpp
 CLASS_FOLDER := class/
-CLASSES := $(addprefix $(CLASS_FOLDER), Bureaucrat.cpp)
+CLASSES := $(addprefix $(CLASS_FOLDER), )
 FUNCTIONS :=
 SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) $(CLASSES) $(FUNCTIONS))
 
 OBJECTS_FOLDER = bin/
 OBJECTS = $(SOURCE:$(SOURCE_FOLDER)%.cpp=$(OBJECTS_FOLDER)%.o)
 
-$(OBJECTS_FOLDER)%.o:$(SOURCE_FOLDER)%.cpp $(SOURCE_FOLDER)%.hpp
+$(OBJECTS_FOLDER)%.o:$(SOURCE_FOLDER)%.cpp $(SOURCE_FOLDER)iter.hpp
 	@mkdir -p $(OBJECTS_FOLDER)
-	@mkdir -p $(OBJECTS_FOLDER)$(CLASS_FOLDER)
 	@$(COMPILER) $(FLAGS) -o $@ -c $< && echo "Compilando: $(notdir $<)"
 
 
