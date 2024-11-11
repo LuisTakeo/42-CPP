@@ -12,6 +12,8 @@ Array<T>::Array(unsigned int n)
 {
 	this->_size = n;
 	this->_array = new T[n];
+	for (unsigned int i = 0; i < this->_size; i++)
+		this->_array[i] = T();
 }
 
 template <typename T>
