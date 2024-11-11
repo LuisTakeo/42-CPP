@@ -1,69 +1,36 @@
-#include "whatever.hpp"
+#include "iter.hpp"
 
-
-
-void evaluation_tests(void)
+void evaluation_tests()
 {
-	Awesome a(2), b(4);
+    int             size = 5;
+    int             tab[5] = {0, 1, 2, 3, 4};
+    float           tabF[5] = {0.0f, 1.1f, 2.2f, 3.3f, 4.4f};
+    std::string     tabS[5] = {"zero", "one", "two", "three", "four"};
 
-    std::cout << a << " " << b << std::endl;
-    std::cout << "swap(a, b)" << std::endl;
-    swap(a, b);
-    std::cout << "a = " << a << " b = " << b << std::endl;
-    std::cout << "max(a, b)" << max(a, b) << std::endl;
-    std::cout << "min(a, b)"  << min(a, b) << std::endl;
+    std::cout << "Test 1: print int" << std::endl;
+    std::cout << "Calling: iter(tab, size, printRandomColor);" << std::endl;
+    iter(tab, size, printRandomColor);
+    std::cout << "Test 2: print string" << std::endl;
+    std::cout << "Calling: iter(tabS, size, printRandomColor);" << std::endl;
+    iter(tabS, size, printRandomColor);
+    std::cout << "Test 3: Increment int " << std::endl;
+    std::cout << "Calling: iter(tab, size, increment);" << std::endl;
+    iter(tab, size, increment);
+    std::cout << "Calling: iter(tab, size, printRandomColor);" << std::endl;
+    iter(tab, size, printRandomColor);
+    std::cout << "Test 4: Increment float " << std::endl;
+    std::cout << "Calling: iter(tabF, size, increment);" << std::endl;
+    iter(tabF, size, increment);
+    std::cout << "Calling: iter(tabF, size, printRandomColor);" << std::endl;
+    iter(tabF, size, printRandomColor);
+
 }
-
-void    myTests()
-{
-    std::cout << "Test 1: int" << std::endl;
-    int a = 2;
-    int b = 3;
-    std::cout << "a = " << a << ", b = " << b << std::endl;
-    std::cout << "swap(a, b)" << std::endl;
-    swap(a, b);
-    std::cout << "a = " << a << ", b = " << b << std::endl;
-    std::cout << "min(a, b) = " << min(a, b) << std::endl;
-    std::cout << "max(a, b) = " << max(a, b) << std::endl;
-    std::cout << "--------------------------------" << std::endl;
-    std::cout << "Test 2: char " << std::endl;
-    char c = 'a';
-    char d = 'b';
-    std::cout << "c = " << c << ", d = " << d << std::endl;
-    std::cout << "swap(c, d)" << std::endl;
-    swap(c, d);
-    std::cout << "c = " << c << ", d = " << d << std::endl;
-    std::cout << "min(c, d) = " << min(c, d) << std::endl;
-    std::cout << "max(c, d) = " << max(c, d) << std::endl;
-    std::cout << "--------------------------------" << std::endl;
-    std::cout << "Test 3: double " << std::endl;
-    double e = 2.5;
-    double f = 3.5;
-    std::cout << "e = " << e << ", f = " << f << std::endl;
-    std::cout << "swap(e, f)" << std::endl;
-    swap(e, f);
-    std::cout << "e = " << e << ", f = " << f << std::endl;
-    std::cout << "min(e, f) = " << min(e, f) << std::endl;
-    std::cout << "max(e, f) = " << max(e, f) << std::endl;
-    std::cout << "--------------------------------" << std::endl;
-    std::cout << "Test 4: string " << std::endl;
-    std::string g = "chaine1";
-    std::string h = "chaine2";
-    std::cout << "g = " << g << ", h = " << h << std::endl;
-    std::cout << "swap(g, h)" << std::endl;
-    swap(g, h);
-    std::cout << "g = " << g << ", h = " << h << std::endl;
-    std::cout << "min(g, h) = " << ::min(g, h) << std::endl;
-    std::cout << "max(g, h) = " << ::max(g, h) << std::endl;
-    std::cout << "--------------------------------" << std::endl;
-}
-
 
 int main()
 {
     std::cout << "Evaluation tests" << std::endl;
     evaluation_tests();
     std::cout << "================================" << std::endl;
-    myTests();
+    // myTests();
     return 0;
 }

@@ -70,6 +70,7 @@
     "string_view": "cpp",
     "iomanip": "cpp",
     "ranges": "cpp",
-    "numbers": "cpp"
+    "numbers": "cpp",
+    "*.tpp": "cpp"
   }
 }
