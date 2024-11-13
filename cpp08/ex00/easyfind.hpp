@@ -11,7 +11,7 @@ template <typename TContainer>
 typename TContainer::iterator    easyfind(TContainer &container, int num);
 
 
-// Esse template abaixo sobrecarregado somente funciona no c++11 ou superior
+// Esse template abaixo somente funciona no c++11 ou superior
 // template <typename TKey = int, typename TValue = int>
 // typename std::map<TKey, TValue>::iterator    easyfind(std::map<TKey, TValue> &container, int num)
 // {
