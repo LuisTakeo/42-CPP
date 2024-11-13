@@ -31,6 +31,20 @@ Span &Span::operator=(const Span &src)
 	return *this;
 }
 
+int &Span::operator[](unsigned int index)
+{
+	if (index >= this->_nums.size())
+		throw std::out_of_range("Index out of range");
+	return this->_nums[index];
+}
+
+const int &Span::operator[](unsigned int index) const
+{
+	if (index >= this->_nums.size())
+		throw std::out_of_range("Index out of range");
+	return this->_nums[index];
+}
+
 void Span::addNumber(int n)
 {
 	if (this->_nums.size() >= this->_size)
@@ -78,12 +92,12 @@ std::vector<int> Span::getVector() const
 	return this->_nums;
 }
 
-template <typename TIterator>
-void Span::fillVector(TIterator begin, TIterator end)
+// inline void printValue(int n) {	std::cout << n << " ";}
+
+void Span::printValues() const
 {
-	if (this->_nums.size() + std::distance(begin, end) > this->_size)
-		throw std::length_error("Span is full");
-
-	this->_nums.insert(this->_nums.end(), begin, end);
+	if (!this->_nums.size())
+		std::cout << "No values to print";
+	std::for_each(this->_nums.begin(), this->_nums.end(), PrintValue());
+	std::cout << std::endl;
 }
-

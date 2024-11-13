@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <ctime>
 # include "./class/Span.hpp"
 
 #endif
