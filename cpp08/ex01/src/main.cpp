@@ -3,7 +3,7 @@
 
 void testWithVector()
 {
-	std::cout << "Test 1" << std::endl;
+	std::cout << COLOR_GREEN << "Test 1" << COLOR_RESET << std::endl;
 	std::cout << "Creating Span" << std::endl;
 	Span sp = Span(5);
 	std::cout << "Adding numbers to Span" << std::endl;
@@ -22,10 +22,10 @@ void testWithVector()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 
-	std::cout << "Test 2" << std::endl;
+	std::cout << COLOR_GREEN << "Test 2" << COLOR_RESET << std::endl;
 	std::cout << "Creating Span size 10" << std::endl;
 	Span sp2 = Span(10);
 	std::cout << "Creating a vector" << std::endl;
@@ -38,7 +38,7 @@ void testWithVector()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 	try
 	{
@@ -67,7 +67,7 @@ void testWithVector()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 
 	try
@@ -85,14 +85,14 @@ void testWithVector()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
 
 
 void testWithArray()
 {
-	std::cout << "Test 3" << std::endl;
+	std::cout << COLOR_GREEN << "Test 3" << COLOR_RESET << std::endl;
 	std::cout << "Creating Span with array" << std::endl;
 	int arr[] = {10, 20, 30, 40, 50};
     size_t arrSize = sizeof(arr) / sizeof(arr[0]);
@@ -110,13 +110,13 @@ void testWithArray()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
 
 void	testWith10000value()
 {
-	std::cout << "Test 4" << std::endl;
+	std::cout << COLOR_GREEN << "Test 4" << COLOR_RESET << std::endl;
 	std::cout << "Creating Span with 10000 values" << std::endl;
 	Span sp4 = Span(10000);
 	std::vector<int> v;
@@ -139,7 +139,7 @@ void	testWith10000value()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << COLOR_RED << e.what() << COLOR_RESET << std::endl;
 	}
 }
 

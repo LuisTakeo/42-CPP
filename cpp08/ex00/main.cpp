@@ -22,11 +22,13 @@ int main()
         numSet.insert(i);
     }
 
-    std::cout << "Vector: ";
+    std::cout << COLOR_GREEN << "Vector: " << COLOR_RESET;
+    printContainer(numVector);
     try
     {
+        std::cout << "Trying to find 5: ";
         std::cout << *easyfind(numVector, 5) << std::endl;
-        std::cout << "Not Found test: ";
+        std::cout << "Not Found test. Trying to find 100: ";
         std::cout << *easyfind(numVector, 100) << std::endl;
     }
     catch (std::exception &e)
@@ -34,11 +36,14 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "List: ";
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << COLOR_GREEN << "List: " << COLOR_RESET;
+    printContainer(numList);
     try
     {
+        std::cout << "Trying to find 2: ";
         std::cout << *easyfind(numList, 2) << std::endl;
-        std::cout << "Not Found test: ";
+        std::cout << "Not Found test. Trying to find 123: ";
         std::cout << *easyfind(numList, 123) << std::endl;
     }
     catch (std::exception &e)
@@ -46,11 +51,14 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    std::cout << "Deque: ";
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << COLOR_GREEN << "Deque: " << COLOR_RESET;
+    printContainer(numDeque);
     try
     {
+        std::cout << "Trying to find 4: ";
         std::cout << *easyfind(numDeque, 4) << std::endl;
-        std::cout << "Not Found test: ";
+        std::cout << "Not Found test. Trying to find 10: ";
         std::cout << *easyfind(numDeque, 10) << std::endl;
     }
     catch (std::exception &e)
@@ -58,11 +66,14 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-        std::cout << "Set: ";
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << COLOR_GREEN << "Set: " << COLOR_RESET;
+    printContainer(numSet);
     try
     {
+        std::cout << "Trying to find 6: ";
         std::cout << *easyfind(numSet, 6) << std::endl;
-        std::cout << "Not Found test: ";
+        std::cout << "Not Found test: Trying to find 11: ";
         std::cout << *easyfind(numSet, 11) << std::endl;
     }
     catch (std::exception &e)
