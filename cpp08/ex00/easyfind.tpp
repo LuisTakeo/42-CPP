@@ -24,3 +24,22 @@ typename TContainer::iterator    easyfind(TContainer &container, int num)
 //     if (it == container.end())
 //         throw std::runtime_error("Not found");
 //     return (it);
+
+template <typename TContainer>
+void printContainer(TContainer const &container)
+{
+	typedef typename TContainer::const_iterator const_iterator;
+	for (const_iterator it = container.begin(); it != container.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+}
+
+template <typename TContainer>
+void printContainer(TContainer &container)
+{
+	typedef typename TContainer::iterator iterator;
+	for (iterator it = container.begin(); it != container.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
