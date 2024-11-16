@@ -7,6 +7,8 @@
 #include <list>
 #include <deque>
 #include <algorithm>
+#include <climits>
+#include <cstdio>
 
 class PMergeMe
 {
@@ -14,15 +16,17 @@ class PMergeMe
         std::list<int>  _list;
         std::deque<int> _deque;
 
-        PMergeMe();
+        bool            isNumber(char *str);
+        void            putValues(char **av);
 
     public:
+        PMergeMe();
         PMergeMe(PMergeMe const &other);
-        -PMergeMe();
+        ~PMergeMe();
         PMergeMe &operator=(PMergeMe const &other);
 
-        void    run(const char **av);
-}
+        void    run(char **av);
+};
 
 
 #endif
