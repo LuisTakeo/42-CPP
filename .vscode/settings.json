@@ -71,6 +71,9 @@
     "iomanip": "cpp",
     "ranges": "cpp",
     "numbers": "cpp",
-    "*.tpp": "cpp"
+    "*.tpp": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp"
   }
 }

@@ -1,5 +1,5 @@
 #include "./main.hpp"
-
+#include <cstring>
 
 int main(int argc, char **argv)
 {
@@ -9,6 +9,8 @@ int main(int argc, char **argv)
 			throw std::invalid_argument("Error: invalid number of arguments");
 
 		BitcoinExchange exchange;
+
+
 		exchange.printFile(argv[1]);
 	}
 	catch (std::exception &e)
