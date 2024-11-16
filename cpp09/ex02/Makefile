@@ -1,11 +1,11 @@
-NAME = bureaucrat
+NAME = PmergeMe
 COMPILER := c++
 FLAGS :=	-Wall -Werror -Wextra -std=c++98
 
 SOURCE_FOLDER := src/
 MAIN := main.cpp
 CLASS_FOLDER := class/
-CLASSES := $(addprefix $(CLASS_FOLDER), Bureaucrat.cpp)
+CLASSES := $(addprefix $(CLASS_FOLDER), PmergeMe.cpp)
 FUNCTIONS :=
 SOURCE := $(addprefix $(SOURCE_FOLDER), $(MAIN) $(CLASSES) $(FUNCTIONS))
 
