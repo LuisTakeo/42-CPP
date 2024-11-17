@@ -30,6 +30,9 @@ class PMergeMe
         void    mergeInsertionSort(TContainer &container);
 
         template <typename TContainer>
+        void    mergeBlocks(TContainer &container, size_t blockSize);
+
+        template <typename TContainer>
         int     findSmallest(TContainer &container, TContainer &larger);
 
         template <typename TContainer>
@@ -53,6 +56,41 @@ void    PMergeMe::printContainer(TContainer &container)
     std::cout << std::endl;
 }
 
+template <typename TContainer>
+void PMergeMe::mergeBlocks(TContainer &container, size_t blockSize)
+{
+    size_t size = container.size();
+
+    // Mesclagem de blocos
+    for (size_t i = 0; i < size; i += 2 * blockSize)
+    {
+        size_t mid = std::min(i + blockSize, size);
+        size_t end = std::min(i + 2 * blockSize, size);
+
+        TContainer temp;
+        typename TContainer::iterator it1 = container.begin() + i;
+        typename TContainer::iterator it2 = container.begin() + mid;
+
+        // Merged block de dois segmentos ordenados
+        while (it1 != container.begin() + mid && it2 != container.begin() + end)
+        {
+            if (*it1 <= *it2)
+                temp.push_back(*it1++);
+            else
+                temp.push_back(*it2++);
+        }
+
+        // Adicionar os elementos restantes
+        while (it1 != container.begin() + mid)
+            temp.push_back(*it1++);
+        while (it2 != container.begin() + end)
+            temp.push_back(*it2++);
+
+        // Copiar os dados mesclados de volta
+        std::copy(temp.begin(), temp.end(), container.begin() + i);
+    }
+}
+
 
 
 template <typename TContainer>
@@ -62,35 +100,49 @@ void PMergeMe::mergeInsertionSort(TContainer &container)
     if (size < 2)
         return;
 
-    TContainer larger, smaller;
-    // Divide the container into two parts
+    // Containers to store the elements
+    TContainer ladder;  // Jacob's Ladder
+    TContainer smaller; // Smaller elements
+
+    // Dividing the container into blocks of 2 elements
     for (size_t i = 0; i < size; i += 2)
     {
         if (i + 1 < size)
         {
-            larger.push_back(std::max(container[i], container[i + 1]));
-            smaller.push_back(std::min(container[i], container[i + 1]));
+            int larger = std::max(container[i], container[i + 1]);
+            int smallerElem = std::min(container[i], container[i + 1]);
+
+            ladder.push_back(larger);  // Insert on ladder
+            smaller.push_back(smallerElem);  // Insert on smaller
         }
         else
-            larger.push_back(container[i]);
+        {
+            ladder.push_back(container[i]);  // Last element
+        }
     }
 
-    // Recursive call to divide the larger part
-    mergeInsertionSort(larger);
+    // Order the ladder recursively
+    mergeInsertionSort(ladder);
 
-    // Clear the container and copy the sorted larger part
-    container.clear();
-    container = larger;
-
-    // Insert the elements from the smaller part into the sorted container
-    typedef typename TContainer::iterator iterator;
+    // Insert the smaller elements back into the ladder
     for (size_t i = 0; i < smaller.size(); ++i)
     {
-        iterator insertPos = std::lower_bound(container.begin(), container.end(), smaller[i]);
-        container.insert(insertPos, smaller[i]);
+        typename TContainer::iterator insertPos =
+            std::lower_bound(ladder.begin(), ladder.end(), smaller[i]);
+        ladder.insert(insertPos, smaller[i]);
+    }
+
+    // Update the container
+    container = ladder;
+
+    // Jacob's Ladder Sequence, merging the blocks
+    size_t blockSize = 2;  // starts with 2 then doubles
+    while (blockSize < size)
+    {
+        // Block merge
+        mergeBlocks(container, blockSize);
+        blockSize *= 2;  // Double the block size
     }
 }
-
-
 
 #endif

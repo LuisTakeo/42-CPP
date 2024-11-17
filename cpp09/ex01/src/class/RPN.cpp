@@ -43,8 +43,8 @@ bool    RPN::isOperator(std::string &token)
 {
     if (token.size() != 1)
         return false;
-    return token[0] == '+' || token[0] == '-'
-        || token[0] == '*' || token[0] == '/';
+    return token == "+" || token == "-"
+        || token == "*" || token == "/";
 }
 
 int     RPN::getNumberFromStack()
@@ -58,9 +58,9 @@ int     RPN::getNumberFromStack()
 
 int     RPN::setOperator(std::string &token)
 {
-    std::string operators[] = {"+", "-", "*", "/"};
-    size_t id;
-    for (id = 0; id < operators->size(); id++)
+    std::string operators[4] = {"+", "-", "*", "/"};
+    size_t id = 0;
+    for (id = 0; id < 4; id++)
         if (operators[id] == token)
             break;
     return id;
@@ -94,8 +94,8 @@ void    RPN::calculate(std::string &token)
 {
     if (this->_stack.size() < 2)
         throw std::invalid_argument("Error: Not enough numbers in stack");
-    int a = getNumberFromStack();
     int b = getNumberFromStack();
+    int a = getNumberFromStack();
 
     std::string operators[] = {"+", "-", "*", "/"};
     int operatorId = setOperator(token);
